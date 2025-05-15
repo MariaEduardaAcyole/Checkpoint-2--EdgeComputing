@@ -1,11 +1,6 @@
 # Checkpoint-2--EdgeComputing
 ![Badge Concluido](http://img.shields.io/static/v1?label=STATUS&message=CONCLUIDO&color=GREEN&style=for-the-badge)
 
-Tem q ter no repositório:
-- [ ] imagem do circuito
-- [ ] código do Arduino
-- [ ] um README
-
   ## Descrição do Desafio
 Este projeto foi desenvolvido para a **Vinheria Agnello**, com o objetivo de criar um sistema de monitoramento de **temperatura** e **umidade** do ambiente, onde os vinhos são armazenados. Para ver os valores de temperatura, umidade e luminosidade de alguma forma, sugerimos usar um display LCD para mostrar esses valores. 
 O sistema visa garantir que os vinhos permaneçam em condições ideais para sua conservação.

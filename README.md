@@ -13,7 +13,6 @@ O sistema visa garantir que os vinhos permaneçam em condições ideais para sua
   ## Principais Requisitos
 > A fase dois do projeto para atender novos requisitos:
 
-![telas](telas.png)
 
 1. Enquanto o ambiente estiver escuro, o LED Verde deve ficar aceso;
 2. Enquanto o ambiente estiver a meia luz, o LED amarelo deve ficar aceso e mensagem de

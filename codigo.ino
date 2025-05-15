@@ -2,9 +2,17 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
+#define VIN 5
+#define R 1000
 #define DHTPIN 8
-#define DHTTYPE DHT22
+#define DHTTYPE DHT11
 #define LDRPIN A0
+
+int foto = A0;
+int lux;
+int sensorValor;
+int lim1 = 350;
+int lim2 = 600;
 
 // LEDs e Buzzer
 #define LED_VERDE 2
@@ -40,43 +48,59 @@ void loop() {
 
   float temp = somaTemp / 5;
   float umid = somaUmid / 5;
-  float luz = somaLuz / 5;
+  sensorValor = analogRead(foto);
+  lux = sensorRawToPhys(sensorValor);
+
+  // Exibe o valor do sensor e a luminosidade calculada
+  Serial.print(F("Valor do sensor= "));
+  Serial.println(sensorValor); // Valor da leitura do sensor
+  Serial.print(F("Valor físico do sensor = "));
+  Serial.print(lux); // Valor da leitura do sensor em Lumens
+  Serial.println(F(" lumen"));
 
   // LIMPA o LCD
   lcd.clear();
 
   // -------- CONTROLE DE LUZ AMBIENTE --------
-  if (luz < 300) {
+  if (lux < lim1) {
     digitalWrite(LED_VERDE, HIGH);
     digitalWrite(LED_AMARELO, LOW);
     digitalWrite(LED_VERMELHO, LOW);
     digitalWrite(BUZZER, LOW);
-    // LCD: não precisa mostrar nada específico
+    lcd.setCursor(0, 0);
+    lcd.print("Ambiente Escuro");
+    lcd.setCursor(0, 1);
+    lcd.print("LED verde aceso");
   }
-  else if (luz >= 300 && luz < 700) {
+  else if (lux >= lim1 && lux < lim2) {
     digitalWrite(LED_VERDE, LOW);
     digitalWrite(LED_AMARELO, HIGH);
     digitalWrite(LED_VERMELHO, LOW);
     digitalWrite(BUZZER, LOW);
     lcd.setCursor(0, 0);
-    lcd.print("Ambiente a");
+    lcd.print("Ambiente Meio Claro");
     lcd.setCursor(0, 1);
-    lcd.print("meia luz");
+    lcd.print("LED amarelo aceso");
   }
-  else if (luz > 700) { // luz forte
+  else {
     digitalWrite(LED_VERDE, LOW);
     digitalWrite(LED_AMARELO, LOW);
     digitalWrite(LED_VERMELHO, HIGH);
     digitalWrite(BUZZER, HIGH);
     lcd.setCursor(0, 0);
-    lcd.print("Ambiente muito");
+    lcd.print("Ambiente Claro");
     lcd.setCursor(0, 1);
-    lcd.print("claro");
+    lcd.print("LED vermelho aceso");
+
+    // Toque do buzzer
+    tone(BUZZER, 440);
+    delay(2000);
+    noTone(BUZZER);
+    delay(2000);
   }
 
-  delay(5000);
-  lcd.clear();
-
+  delay(5000); // Aguarda 5 segundos antes de atualizar
+    lcd.clear();
   // -------- CONTROLE DE TEMPERATURA --------
   if (temp >= 10 && temp <= 15) {
     lcd.setCursor(0, 0);
@@ -100,9 +124,8 @@ void loop() {
     lcd.print(" C");
   }
 
-  delay(3000);
+  delay(3000); // Aguarda 3 segundos antes de atualizar as informações no LCD
   lcd.clear();
-
   // -------- CONTROLE DE UMIDADE --------
   if (umid >= 50 && umid <= 70) {
     lcd.setCursor(0, 0);
@@ -127,4 +150,13 @@ void loop() {
   }
 
   delay(5000); // Espera 5s antes de repetir tudo
+    lcd.clear();
+}
+
+// Função de conversão para luminosidade (Lux)
+int sensorRawToPhys(int raw) {
+  float Volt = float(raw) * (VIN / float(1024));
+  float RLDR = (R * (VIN - Volt)) / Volt;
+  int phys = 500 / (RLDR / 1000);  // Conversão para lux (ajuste de acordo com o seu sensor)
+  return phys;
 }

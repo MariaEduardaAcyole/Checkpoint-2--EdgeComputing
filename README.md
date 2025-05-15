@@ -84,6 +84,8 @@ Além disso, você precisará do hardware adequado:
 - [Matheus Goes da Silva `566407`](https://github.com/Goes1404)
 - [Arthur Marcio de Barros Silva `563359`](https://github.com/TutuMbs)
 - [Gabriela Abdelnor Tavares `562291`](https://github.com/GabihAbdTavares)
+- [Felipe da Costa Lana `566578`]()
+
 
 ## Licença
 

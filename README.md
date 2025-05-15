@@ -41,8 +41,6 @@ para valores acima de 70% e também mostrar a umidade;
 13.Enquanto a umidade estiver fora da faixa ideal, o Display deve informar “Umidade. Baixa”,
 para valores abaixo de 50% e também mostrar a umidade;
 
-## Demonstração da Aplicação (MUDA O LINK E IMG)
-
 ## Demonstração em vídeo
 
 [![Assista à prática no YouTube](https://img.youtube.com/vi/PEIcxzw2ug4/0.jpg)](https://youtu.be/PEIcxzw2ug4)

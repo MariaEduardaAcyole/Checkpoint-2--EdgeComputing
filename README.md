@@ -43,7 +43,9 @@ para valores abaixo de 50% e também mostrar a umidade;
 
 ## Demonstração da Aplicação (MUDA O LINK E IMG)
 
-[![Video da prática][![Video da prática](https://img.youtube.com/vi/bMINbjy88VI/0.jpg)](https://www.youtube.com/watch?v=bMINbjy88VI)
+## Demonstração em vídeo
+
+[![Assista à prática no YouTube](https://img.youtube.com/vi/PEIcxzw2ug4/0.jpg)](https://youtu.be/PEIcxzw2ug4)
 
 ## Tecnologias Utilizadas
 
